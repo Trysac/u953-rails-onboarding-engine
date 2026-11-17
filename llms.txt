@@ -1,0 +1,16 @@
+# rails-onboarding-engine
+
+> Multi-step onboarding flow engine with a declarative step DSL, conditional branches, progress percentages, versioned migrations and HMAC-signed resume tokens Gem `u953-rails-onboarding-engine`, module `Trysac::RailsOnboardingEngine`, MIT licensed, Ruby >= 4.0,
+> standard library only.
+
+## Docs
+
+- [README](README.md): problem, install, usage example
+- [AGENTS](AGENTS.md): commands, folder map, conventions, limits
+- [Architecture](docs/ARCHITECTURE.md): shape of the library and its public API
+- [Testing](docs/TESTING.md): how to run and extend the specs
+
+## Optional
+
+- [Stack](docs/STACK.md): tools used and discarded
+- [Changelog](CHANGELOG.md): release history

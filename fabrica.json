@@ -1,0 +1,1 @@
+{"lang": "ruby", "package": "u953-rails-onboarding-engine", "commands": {"install": [["bundle", "install"]], "check": [["ruby", "scripts/check.rb"]]}}
