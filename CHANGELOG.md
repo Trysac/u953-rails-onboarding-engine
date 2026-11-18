@@ -9,4 +9,5 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Added declarative multi-step onboarding `Flow` DSL, branching `Engine`, version migrations, HMAC-SHA256 resume tokens, `MemoryStore`, `JsonFileStore`, and `CLI`.
 - Initial project structure from the factory utility template.
