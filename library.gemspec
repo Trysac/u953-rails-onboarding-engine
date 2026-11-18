@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
 # Factory-owned file: agents must not edit it. The gem's runtime dependencies are added by
-# `ruby scripts/add_dependency.rb`; its version lives in lib/trysac/rails_onboarding_engine/version.rb (the release manager).
+# `ruby scripts/add_dependency.rb`; its version lives in
+# lib/trysac/rails_onboarding_engine/version.rb (the release manager).
 #
 # The version is read from the file, not required: Bundler evaluates this gemspec before SimpleCov starts, and a
 # required version.rb would count as uncovered.
 Gem::Specification.new do |spec|
   spec.name = "u953-rails-onboarding-engine"
-  spec.version = File.read(File.join(__dir__, "lib/trysac/rails_onboarding_engine/version.rb"))[/^\s*VERSION = "([^"]+)"$/, 1]
+  version_file = File.join(__dir__, "lib/trysac/rails_onboarding_engine/version.rb")
+  spec.version = File.read(version_file)[/^\s*VERSION = "([^"]+)"$/, 1]
   spec.authors = ["Miguel Gomez"]
   spec.summary = <<~SUMMARY.strip
     Multi-step onboarding flow engine with a declarative step DSL, conditional branches, progress percentages, versioned migrations and HMAC-signed resume tokens

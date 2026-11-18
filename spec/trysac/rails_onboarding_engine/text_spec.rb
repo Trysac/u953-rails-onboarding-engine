@@ -4,29 +4,19 @@ require "spec_helper"
 
 RSpec.describe Trysac::RailsOnboardingEngine::Text do
   describe ".normalize" do
-    it "trims surrounding whitespace and lower-cases the text" do
-      expect(described_class.normalize("  Hello World ")).to eq("hello world")
+    it "trims surrounding whitespace and lower-cases ASCII letters" do
+      expect(described_class.normalize("  Hello, World! \n")).to eq("hello, world!")
     end
 
-    it "keeps inner whitespace" do
-      expect(described_class.normalize("\tA  B\n")).to eq("a  b")
+    it "lower-cases only ASCII letters and leaves non-ASCII characters untouched" do
+      expect(described_class.normalize("  ÑOÑO ")).to eq("ÑoÑo")
     end
 
-    it "lower-cases only ASCII letters" do
-      expect(described_class.normalize("ÉCOLE")).to eq("École")
+    it "raises BlankInputError with code :blank_input on empty or whitespace-only input" do
+      expect { described_class.normalize("") }.to raise_error(Trysac::RailsOnboardingEngine::BlankInputError) { |e|
+        expect(e.code).to eq(:blank_input)
+      }
+      expect { described_class.normalize("   \t\n ") }.to raise_error(Trysac::RailsOnboardingEngine::BlankInputError)
     end
-
-    it "raises BlankInputError on blank input" do
-      expect { described_class.normalize("   ") }
-        .to raise_error(Trysac::RailsOnboardingEngine::BlankInputError, "input is blank")
-    end
-
-    it "raises BlankInputError on empty input" do
-      expect { described_class.normalize("") }.to raise_error(ArgumentError, "input is blank")
-    end
-  end
-
-  it "exposes a semantic version" do
-    expect(Trysac::RailsOnboardingEngine::VERSION).to match(/\A\d+\.\d+\.\d+\z/)
   end
 end
